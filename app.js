@@ -1,9 +1,8 @@
 /* ═══════════════════════════════════════════════════
-   FLUXS Takeover Short Presentation — JavaScript
+   FLUXS Übernahme-Exposé 2026 — JavaScript
    - IntersectionObserver animations
    - Side nav dot tracking
-   - Chart.js charts (Revenue + Growth)
-   - Animated progress bars
+   - Chart.js: Revenue + Growth Projection
 ═══════════════════════════════════════════════════ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -147,40 +146,34 @@ document.addEventListener('DOMContentLoaded', () => {
   // ─── Growth Projection Chart (7 years, 4 datasets) ──────────
   const growthCtx = document.getElementById('growthChart');
   if (growthCtx) {
-    const deLabel = 'Deutschland';
-    const nlLabel = 'BeNeLux';
-    const plLabel = 'Polen';
-    const ukLabel = 'UK';
-    const xLabels = ['2022 (Ist)', '2023 (Ist)', '2024 (Ist)', '2025 (Ist)', '2026 (Proj.)', '2027 (Proj.)', '2028 (Proj.)'];
-
     new Chart(growthCtx, {
       type: 'bar',
       data: {
-        labels: xLabels,
+        labels: ['2022 (Ist)', '2023 (Ist)', '2024 (Ist)', '2025 (Ist)', '2026 (Proj.)', '2027 (Proj.)', '2028 (Proj.)'],
         datasets: [
           {
-            label: deLabel,
+            label: 'Deutschland',
             data: [1.32, 2.57, 3.69, 4.18, 5.0, 5.8, 6.5],
             backgroundColor: GREEN,
             borderRadius: 4,
             borderSkipped: 'start',
           },
           {
-            label: nlLabel,
+            label: 'BeNeLux',
             data: [0, 0, 0, 0, 0.2, 0.8, 1.3],
             backgroundColor: LIME,
             borderRadius: 4,
             borderSkipped: 'start',
           },
           {
-            label: plLabel,
+            label: 'Polen',
             data: [0, 0, 0, 0, 0, 0, 0.5],
             backgroundColor: LIME_LIGHT,
             borderRadius: 4,
             borderSkipped: 'start',
           },
           {
-            label: ukLabel,
+            label: 'UK',
             data: [0, 0, 0, 0, 0, 0.2, 1.7],
             backgroundColor: UK_COLOR,
             borderRadius: 4,
@@ -230,24 +223,5 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-
-  // ─── Animate progress bars on Bewertung slide ───────────────
-  const barObs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.querySelectorAll('.use-bar-fill').forEach(bar => {
-          const targetWidth = bar.style.width;
-          bar.style.width = '0%';
-          requestAnimationFrame(() => {
-            setTimeout(() => { bar.style.width = targetWidth; }, 100);
-          });
-        });
-        barObs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.4 });
-
-  const investSlide = document.getElementById('slide-5');
-  if (investSlide) barObs.observe(investSlide);
 
 });
