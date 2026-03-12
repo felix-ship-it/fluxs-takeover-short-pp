@@ -827,3 +827,37 @@ canvas { max-width: 100%; }
   .growth-layout { grid-template-columns: 1fr; }
   .valuation-layout { grid-template-columns: 1fr; }
 }
+
+/* ═══ Language Toggle ═══ */
+.lang-toggle {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 100px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+.lang-toggle a {
+  padding: 6px 14px;
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: rgba(255,255,255,0.45);
+  transition: all 0.2s ease;
+}
+.lang-toggle a.active {
+  background: var(--lime);
+  color: var(--green);
+  border-radius: 100px;
+}
+.lang-toggle a:not(.active):hover {
+  color: rgba(255,255,255,0.8);
+}
